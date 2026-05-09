@@ -1,0 +1,14 @@
+\chapter*{外文翻译}
+\addcontentsline{toc}{chapter}{外文翻译}
+
+\section*{原文}
+
+Diffusion models represent a class of generative models that learn to reverse a gradual noising process. Given a data distribution $q(x_0)$, the forward process progressively adds Gaussian noise over $T$ timesteps, producing a sequence of increasingly noisy latents $x_1, x_2, \ldots, x_T$. The reverse process then learns to denoise, step by step, recovering the original data from pure noise.
+
+The key insight is that if the noise added at each step is small enough, the reverse process can be approximated by a neural network trained to predict the noise component. This leads to stable training dynamics and high-quality sample generation, particularly for image synthesis tasks.
+
+\section*{译文}
+
+扩散模型是一类通过学习逆转逐步加噪过程的生成模型。给定数据分布 $q(x_0)$，前向过程在 $T$ 个时间步上逐步添加高斯噪声，产生一系列噪声逐渐增大的隐变量 $x_1, x_2, \ldots, x_T$。逆向过程则学习逐步去噪，从纯噪声中恢复原始数据。
+
+其核心思想在于：如果每一步添加的噪声足够小，逆向过程可以用一个训练来预测噪声分量的神经网络来近似。这带来了稳定的训练动态和高质量的样本生成，尤其适用于图像合成任务。

@@ -2,7 +2,10 @@
 
 **L**anzhou **U**niversity of **T**echnology **Thesis** LaTeX Template
 
-兰州理工大学学位论文 LaTeX 模板，支持硕士毕业论文格式。基于 [ThuThesis](https://github.com/xueruini/thuthesis) v5.3.2 改编。
+兰州理工大学学位论文 LaTeX 模板。基于 [ThuThesis](https://github.com/xueruini/thuthesis) v5.3.2 改编。
+
+- `graduate` 分支：硕士/博士研究生学位论文
+- `bachelor` 分支：本科毕业设计
 
 ## 编译方式
 
@@ -31,12 +34,39 @@ xelatex main.tex
 | simhei.ttf | 黑体（中文标题） |
 | simkai.ttf | 楷体（中文斜体） |
 | simfang.ttf | 仿宋（封面等） |
+| stxinwei.ttf | 华文新魏（本科封面） |
 | times.ttf / timesbd.ttf / timesi.ttf / timesbi.ttf | Times New Roman（西文） |
 | DejaVuSans.ttf | 特殊符号 |
 
 如需替换 DejaVu Sans 为其他字体，修改 `thuthesis.cls` 中对应的 `\newfontfamily\DejaSans` 行即可。
 
 DejaVu Sans 下载地址：https://dejavu-fonts.github.io/Download.html
+
+## 插入图片
+
+图片放在 `figures/` 目录下。支持 PDF、PNG、JPG 格式：
+
+```latex
+% PDF 格式（推荐矢量图、流程图）
+\includegraphics[width=0.8\textwidth]{fig_name}
+
+% PNG/JPG 格式（适合截图、照片）
+\includegraphics[width=0.8\textwidth]{fig_name.png}
+\includegraphics[width=0.8\textwidth]{fig_name.jpg}
+```
+
+完整插图示例：
+
+```latex
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig_name.png}
+    \caption{图片标题}
+    \label{fig:label}
+\end{figure}
+```
+
+注意：PDF 格式引用时不写扩展名，PNG/JPG 需要写扩展名。
 
 ## 项目结构
 
@@ -47,11 +77,11 @@ DejaVu Sans 下载地址：https://dejavu-fonts.github.io/Download.html
 ├── thuthesis.sty         额外宏包
 ├── fonts/                字体目录
 ├── data/                 章节内容
-│   ├── cover.tex         封面
-│   ├── chap01.tex        第一章
-│   ├── chap02.tex        第二章
-│   ├── conclusion.tex    结论
+│   ├── cover.tex         封面及摘要
+│   ├── chap01.tex        正文章节
+│   ├── conclusion.tex    设计总结
 │   ├── references.tex    参考文献
+│   ├── translation.tex   外文翻译
 │   └── acknowledgment.tex 致谢
 ├── figures/              图片目录
 └── ref/                  参考文献数据库

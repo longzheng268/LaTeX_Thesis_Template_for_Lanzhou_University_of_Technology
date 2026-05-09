@@ -198,6 +198,7 @@
 \newCJKfontfamily\heiti[Path=./fonts/, Extension=.ttf]{simhei}
 \newCJKfontfamily\kaishu[Path=./fonts/, Extension=.ttf]{simkai}
 \newCJKfontfamily\fangsong[Path=./fonts/, Extension=.ttf]{simfang}
+\newCJKfontfamily\xinwei[Path=./fonts/, Extension=.ttf]{stxinwei}
 % 西文字体 — newtxtext 已负责 Times New Roman
 % DejaVu Sans — 特殊符号
 \newfontfamily\DejaSans[Path=./fonts/, Extension=.ttf]{DejaVuSans}
@@ -265,16 +266,12 @@
   nomarginpar}
 \geometry{
 	left=25mm,
-	right=25mm,
-	top=22mm,
-	bottom=22mm,
+	right=20mm,
+	top=25mm,
+	bottom=25mm,
 	headheight=5mm,
-	headsep=7mm,
-	textheight=253mm,
-	textwidth=155mm,
-	footskip=11mm,
-	textwidth=2.5\alphabet,
-	hmarginratio={2:3}}
+	headsep=5mm,
+	footskip=11mm}
 \RequirePackage{fancyhdr}
 \let\thu@cleardoublepage\cleardoublepage
 \newcommand{\thu@clearemptydoublepage}{%
@@ -333,15 +330,10 @@
 \fancypagestyle{thu@headings}{%
   \fancyhead{}
   \fancyfoot{}
-  \fancyhead[CO]{\wuhao \thu@apply} %奇数页眉中部
-  \fancyhead[CE]{\wuhao \thu@ctitle} %偶数页眉中部
+  \fancyhead[C]{\wuhao 兰州理工大学毕业设计}
   \fancyfoot[C]{\wuhao \thepage}
-  \def\headrule{{\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi%
-  \hrule\@height 3pt \@width\headwidth\vskip1pt %上面线为1pt粗
-  \hrule\@height 0.75pt\@width\headwidth %下面0.5pt粗
-  \vskip-2\headrulewidth\vskip-1pt} %两条线的距离1pt
-  \vspace{5mm}}     %双线与下面正文之间的垂直间距
-  \makeatother  }
+  \renewcommand{\headrulewidth}{0.75pt}
+  \renewcommand{\footrulewidth}{0pt}}
 
 \ctexset{%
   punct=quanjiao,
@@ -373,7 +365,7 @@
 \apptocmd{\@makefntext}{\let\@makefnmark\thu@makefnmark}{}{}
 \allowdisplaybreaks[4]
 % 条款格式（缩进、接排）
-\setenumerate{fullwidth,itemindent=\parindent,listparindent=\parindent,itemsep=0ex,partopsep=0pt,parsep=0ex,label=（\arabic*）,topsep=6bp,labelsep=0pt}
+\setenumerate{fullwidth,itemindent=2\parindent,listparindent=\parindent,itemsep=0ex,partopsep=0pt,parsep=0ex,label=（\arabic*）,topsep=6bp,labelsep=0.5em}
 % 公式编号方式
 \renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter.\fi\@arabic\c@equation}
 \def\make@df@tag{\@ifstar\thu@make@df@tag@@\make@df@tag@@@}
@@ -439,11 +431,11 @@
 \ctexset{%
   chapter={
     afterindent=true,
-    pagestyle={\ifthu@bachelor thu@plain\else thu@headings\fi},
+    pagestyle={thu@headings},
     beforeskip={6bp},
     aftername=\hskip\ccwd,
     afterskip={18bp},
-    format={\centering\thu@title@font\heiti\xiaoer[1]},
+    format={\centering\thu@title@font\heiti\sanhao[1.5]},
     nameformat=\relax,
     numberformat=\relax,
     titleformat=\thu@chapter@titleformat,
@@ -453,14 +445,14 @@
     beforeskip={12bp \@plus 1ex \@minus .2ex},
     afterskip={12bp \@plus .2ex},
     aftername=\hskip 0.5\ccwd,
-    format={\thu@title@font\heiti\xiaosan[1.429]},
+    format={\thu@title@font\heiti\sihao[1.538]},
   },
   subsection={
     afterindent=true,
     beforeskip={6bp \@plus 1ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
     aftername=\hskip 0.5\ccwd,
-    format={\thu@title@font\heiti\sihao[1.538]},
+    format={\thu@title@font\heiti\xiaosi[1.667]},
   },
   subsubsection={
     afterindent=true,
@@ -622,55 +614,53 @@
 \newcommand{\thu@put@title}[2][\thu@title@width]{%
   \begin{CJKfilltwosides}[b]{#1}#2\end{CJKfilltwosides}}
 \def\thu@first@titlepage{%
-  \ifthu@postdoctor\thu@first@titlepage@postdoctor\else\thu@first@titlepage@other\fi}
-% 硕士首页
-\newcommand{\thu@first@titlepage@other}{
+  \thu@first@titlepage@bachelor}
+% 本科封面
+\newcommand{\thu@first@titlepage@bachelor}{
   \begin{center}
-    \vspace*{-0.02cm}
-	\parbox[t][1.8cm][t]{\paperwidth-6.34cm}{
-		{\heiti\xiaosi 学校代号\thu@underline[79pt]{\thu@schoolcode}\hfill
-			学\hspace{2em}号\thu@underline[79pt]{\thu@stunum}\\[3pt]
-			{\ziju{0.5} 分类号}\thu@underline[79pt]{\thu@classcode}\hfill
-			密\hspace{2em}级\thu@underline[79pt]{\thu@secretlevel}\\
-		}
-	}
-    %\parbox[b][2.4cm][t]{\textwidth}{%
-      %\ifthu@secret{\heiti\sanhao\thu@secretlevel\thu@%secret@content}\else\rule{1cm}{0cm}\fi} % 保密
-    % 开始页面
-	\vskip 0.0cm
-	\parbox[t][393bp][t]{\paperwidth-6.34cm}{
-	\renewcommand{\baselinestretch}{1.3}
-	\begin{center}
-	  \includegraphics[width=195bp]{lut_new_logo_black}\par
-	  \vskip 22bp%
-	  \erhao[1.5]\textrm{\heiti\thu@apply}\par % 副标题
-	  \vskip 43bp%
-	  \yihao[1.5]{\sffamily\heiti\thu@ctitle}\par % 标题
-	\end{center}}
-	% 信息
-    \vskip 61pt
-    \parbox[t][150bp][t]{\textwidth}{{\xiaosi[1.5]    		
-     \begin{center}\fangsong
-       \setlength{\thu@title@width}{85pt}
-       \setlength{\thu@title@contentwidth}{190pt}
-       \setlength{\extrarowheight}{5pt}
-         %\begin{tabular}{p{84bp}@{}P@{\extracolsep{8pt}}l}
-         \begin{tabular}[l]{p{\thu@title@width}@{}p{190pt}@{}} %单元格无边距
-           \thu@put@title[\thu@title@width]{\heiti\thu@author@title} 	& {\thu@underline[\thu@title@contentwidth]{\songti\thu@cauthor}}\\
-           \thu@put@title[\thu@title@width]{\heiti\thu@department@title}& {\thu@underline[\thu@title@contentwidth]{\songti\thu@cdepartment}}\\
-           \thu@put@title[\thu@title@width]{\heiti\thu@supervisor@title}& {\thu@underline[\thu@title@contentwidth]{\songti\thu@csupervisor}}\\
-           \thu@put@title[\thu@title@width]{\heiti\thu@major@title}		& {\thu@underline[\thu@title@contentwidth]{\songti\thu@cmajor}}\\
-           \thu@put@title[\thu@title@width]{\heiti 研究方向}			& {\thu@underline[\thu@title@contentwidth]{\songti\thu@researchdirect}}\\
-           \thu@put@title[\thu@title@width]{\heiti 论文提交日期}		  & {\thu@underline[\thu@title@contentwidth]{\songti\thu@submitdate}}\\
-         \end{tabular}
-     \end{center}}}
- % 日期
-%     \begin{center}
-%       {\ifthu@bachelor\vskip-1.0cm\hskip-1.2cm\xiaosi\else%
-%         \vskip-0.5cm\sanhao\fi%
-%         \songti\thu@cdate}
-%     \end{center}
-    \end{center}} % end of titlepage
+    \vspace*{0.5cm}
+    \includegraphics[width=195bp]{lut_new_logo_black}\par
+    \vskip 10bp
+    {\sanhao LANZHOU\quad UNIVERSITY\quad OF\quad TECHNOLOGY}\par
+    \vskip 40bp
+    {\xinwei\fontsize{42bp}{63bp}\selectfont 毕业设计}\par
+    \vskip 50bp
+    \parbox[t][][t]{300bp}{
+      \renewcommand{\baselinestretch}{2.0}
+      \heiti\sanhao
+      \begin{tabular}{@{}r@{\hskip 0.5em}l@{}}
+        题\hspace{2em}目 & \thu@underline[220pt]{\songti\thu@ctitle}\\
+      \end{tabular}
+    }\par
+    \vskip 60bp
+    \parbox[t][][t]{300bp}{
+      \renewcommand{\baselinestretch}{1.8}
+      \songti\xiaosi
+      \setlength{\thu@title@width}{80pt}
+      \setlength{\thu@title@contentwidth}{180pt}
+      \begin{tabular}{@{}p{\thu@title@width}@{}p{\thu@title@contentwidth}@{}}
+        学生姓名 & \thu@underline[\thu@title@contentwidth]{\thu@cauthor}\\
+        学生学号 & \thu@underline[\thu@title@contentwidth]{\thu@stunum}\\
+        专业班级 & \thu@underline[\thu@title@contentwidth]{\thu@cmajor}\\
+        指导教师 & \thu@underline[\thu@title@contentwidth]{\thu@csupervisor}\\
+        学\hspace{2em}院 & \thu@underline[\thu@title@contentwidth]{\thu@cdepartment}\\
+        完成日期 & \thu@underline[\thu@title@contentwidth]{\thu@submitdate}\\
+      \end{tabular}
+    }
+  \end{center}}
+% 第二页（题目页）
+\newcommand{\thu@second@titlepage}{
+  \begin{center}
+    \vspace*{80bp}
+    {\heiti\sanhao\thu@ctitle}\par
+    \vskip 20bp
+    {\sanhao\thu@etitle}\par
+    \vfill
+    {\heiti\sihao\thu@cauthor（\thu@eauthor）}\par
+    \vskip 10bp
+    {\heiti\sihao\thu@stunum}\par
+    \vspace*{80bp}
+  \end{center}}
 % 第一页（盲审）
 \newcommand{\thu@first@titlepage@mangshen}{
   \begin{center}
@@ -906,22 +896,10 @@
   \pdfbookmark[-1]{\thu@ctitle}{ctitle}
   \normalsize%
   \begin{titlepage}
-  	  \ifthu@mangshen
-	  	\thu@first@titlepage@mangshen\clearpage
-  	  \else
-	    \thu@first@titlepage\clearpage
-	    \thu@first@secondtitlepage@other\clearpage
-	    \thu@engcover\clearpage
-	    %\cleardoublepage\thu@engcover
-	    \IfNoValueTF{#1}{%
-	      \thu@authorization@mk
-	    }{%
-	      \includepdf{#1}%
-	    }%
-    \fi
+    \thu@first@titlepage\clearpage
+    \thu@second@titlepage\clearpage
   \end{titlepage}
   \normalsize
-%  \thu@makeabstract
 	\pagestyle{thu@headings}
   \let\@tabular\thu@tabular}
 
