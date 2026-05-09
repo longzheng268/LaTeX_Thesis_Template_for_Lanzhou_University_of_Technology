@@ -13,9 +13,10 @@
 *.fdb_latexmk
 *.thm
 
-# PDF output (except scan-auth.pdf)
+# PDF output (except scan-auth.pdf and figures/)
 *.pdf
 !scan-auth.pdf
+!figures/*.pdf
 
 # Claude Code
 .claude/
