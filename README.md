@@ -29,6 +29,8 @@ git checkout graduate
 
 或者直接在 GitHub 页面切换分支下载 ZIP。
 
+![切换分支示意图](images/switch-branch-guide.png)
+
 ## 模板特性
 
 - 使用 XeLaTeX 编译，完整支持中文排版
